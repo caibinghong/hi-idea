@@ -24,6 +24,7 @@
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
         <span> password: admin</span>
+        <router-link :to="{path:'/update'}">update</router-link>
       </div>
     </el-form>
   </div>

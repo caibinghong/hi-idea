@@ -2,8 +2,8 @@
   "name": "hip-idea",
   "version": "0.1.0",
   "private": true,
-  "author":"cbh<caibinghong@163.com>",
-  "description":"",
+  "author": "cbh<caibinghong@163.com>",
+  "description": "hip tools",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -12,12 +12,14 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "publish": "vue-cli-service electron:build --win --x64 -p always"
+    "publish": "vue-cli-service electron:build --win --x64 -p always",
+    "remove":"rimraf dist_electron && rimraf dist"
   },
   "main": "background.js",
   "dependencies": {
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
+    "electron-log": "^4.4.8",
     "electron-updater": "^5.2.1",
     "element-ui": "^2.15.9",
     "js-cookie": "^3.0.1",

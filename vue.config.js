@@ -22,9 +22,14 @@ module.exports = defineConfig({
         path: require.resolve("path-browserify")
       }
     },
+    externals: {
+      'electron': 'require("electron")'
+    },
   },
   pluginOptions: {
     electronBuilder: {
+      //字体图标找不到问题，要配置
+      customFileProtocol: "./",
       //mainProcessFile 指定打包入口文件，注意:package.json 的main:background.js 必须是这样，因为electron:build指定死了
       mainProcessFile: './src/main/index.js',
       nodeIntegration:true,//Module not found: Error: Can't resolve 'fs' 
@@ -60,19 +65,15 @@ module.exports = defineConfig({
         },
         "publish": [{
           "provider": "github",
-          "url": "http://xxxxx/"
+          "channel": "latest",
+          // "url": "http://xxxxx/"
         }],
         "win": {
           "icon": "public/logo.ico",
           "target": [{
             "target": "nsis"
           }]
-        },
-        publish: [{
-          provider: "generic",
-          channel: "latest",
-          url: "http://xxxxxx/dist_electron/"
-        }]
+        }
       }
     }
   }
