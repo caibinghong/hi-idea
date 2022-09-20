@@ -65,9 +65,18 @@ module.exports = defineConfig({
         },
         "publish": [{
           "provider": "github",
-          "channel": "latest",
-          // "url": "http://xxxxx/"
+          "releaseType": "release"
         }],
+        // "publish": [
+        //   {
+        //     "provider": "github", //打包上传到github
+        //     "owner": "cbh", //仓库所有者
+        //     "repo": "hi-idea", //仓库名称
+        //     "private": true, //若是私有仓库，则将私有设置为true，同时添加token，反之不需要设置
+        //     "token": "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", //github的私有token
+        //     "releaseType": "release" //上传到github的版本类型（draft:草稿，prerelease:提前发行版，release:发行版）
+        //   }
+        // ],
         "win": {
           "icon": "public/logo.ico",
           "target": [{

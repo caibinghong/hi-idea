@@ -1,6 +1,6 @@
 'use strict'
 import updater from "./updater"
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow,Menu } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -54,15 +54,15 @@ app.on('activate', () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {  
-  if (isDevelopment && !process.env.IS_TEST) {
-    // Install Vue Devtools
-    try {
-      await installExtension(VUEJS_DEVTOOLS)
-    } catch (e) {
-      console.error('Vue Devtools failed to install:', e.toString())
-    }
-  }
-  // updater()
+  // if (isDevelopment && !process.env.IS_TEST) {
+  //   // Install Vue Devtools
+  //   try {
+  //     await installExtension(VUEJS_DEVTOOLS)
+  //   } catch (e) {
+  //     console.error('Vue Devtools failed to install:', e.toString())
+  //   }
+  // }
+  updater()
   createWindow()
 })
 
@@ -80,3 +80,28 @@ if (isDevelopment) {
     })
   }
 }
+
+// 忽略证书相关错误
+app.commandLine.appendSwitch('ignore-certificate-errors')
+
+
+ 
+ 
+var template = [
+    {
+        label:'帮助',
+        submenu:[
+            {
+                label:'检查更新',
+                //对click事件做反应
+                click:()=>{
+                  updater()
+                }
+            },
+            {label:'三文鱼大腩'}
+        ]
+    }
+]
+ 
+var m = Menu.buildFromTemplate(template)
+Menu.setApplicationMenu(m)

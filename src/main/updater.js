@@ -5,12 +5,12 @@ const {
     dialog,
     BrowserWindow
 } = require('electron')
-
+const path = require('path')
 const log = require("electron-log")
+log.transports.file.resolvePath = () => path.join(__dirname, 'logs/main.log');
+
 autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = "info"
-
-const path = require('path')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -19,7 +19,7 @@ if (isDevelopment) {
     autoUpdater.updateConfigPath = path.join(__dirname, '../dev-app-update.yml')
 }
 
-export default () => {
+ const update = () => {
     let win = null
 
     //设置自动下载
@@ -85,3 +85,4 @@ export default () => {
         })
     })
 }
+export default update;
